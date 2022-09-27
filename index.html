@@ -12,7 +12,7 @@
         const target_0 = document.querySelector("#target0");
         const target_1 = document.querySelector("#target1");
         var myVid = document.querySelector('#videoAlta');
-        myVid.play();
+        
         // detect target found
 	      target_0.addEventListener("targetFound", event => {
 	        console.log("target found");
@@ -83,36 +83,85 @@
         }
       });
 
+      // Event for touch button target 1
+      AFRAME.registerComponent('display_fullimage', {
+        init: function () {
+          var fullImage = document.getElementById('#fullImg');
+          this.el.addEventListener('click', function() {
+            // fullImage.removeAttribute('style');
+            // fullImage.setAttribute('style', 'display: inline;');
+            console.log("touch");
+          });
+        }
+      });
+      // Event for touch button target 2
+      AFRAME.registerComponent('display_fullimage2', {
+        init: function () {
+          var fullImage = document.getElementById('#fullImg');
+          this.el.addEventListener('click', function() {
+            // fullImage.removeAttribute('style');
+            // fullImage.setAttribute('style', 'display: inline;');
+            console.log("touch");
+          });
+        }
+      });
+
     </script>
   </head>
   <body>
+    <div id="fullImg" class="full" style="display: none;"></div>
     <a-scene mindar-image="imageTargetSrc: ./targetsScale3.mind" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
-        <img id="playButton" src="./rounded-play-button.png" />
-        <img id="pauseButton" src="./pausebtn.png" />
-        <img id="background" src="./z3751055767848_08d431324403072078bb268454aecad1.jpg" />
+        <img id="playButton" src="./play-button.png" />
+        <img id="pauseButton" src="./pause-icon-png.png" />
+        <img id="touch" src="./touch-icon.png" />
+
         <video id="videoAlta"
                src="./Video-qua-tang-Alta-Group.mp4"
                width="160" height="90" webkit-playsinline playsinline autoplay loop visible
                crossOrigin="anonymous"></video>
       </a-assets>
 
-      <a-camera position="0 -5 0" look-controls="enabled: true" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: ${customFields.libVersion}; objects: .clickable" camera rotation wasd-controls></a-camera>
+      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: ${customFields.libVersion}; objects: .clickable" camera rotation wasd-controls></a-camera>
 
       <a-entity id="target0" mindar-image-target="targetIndex: 0">
         <a-video id="videoPlayer" src="#videoAlta" width="2" height="1.2" position="0 0 0">
-          <a-image id="videoControls" src="#playButton" class="clickable" position="0 0.8 0" width="0.3" height="0.3" play-pause></a-image>
+          <a-box color="black" position="0 0 -0.0755" depth="0.15" height="1.2" width="2"></a-box>
         </a-video>
+        <!-- play-pause button -->
+        <a-image id="videoControls" src="#playButton" class="clickable" position="-0.5 -0.8 0" depth="0.1" width="0.35" height="0.25" play-pause>
+          <a-box color="black" position="0 0 -0.051" depth="0.1" width="0.35" height="0.25"></a-box>
+        </a-image>
+        <!-- touch button -->
+        <a-plane id="touchBtn" src="#touch" position="0.5 -0.8 0" class="clickable" width="0.35" height="0.25" display_fullimage>
+          <a-box color="black" position="0 0 -0.051" depth="0.1" width="0.35" height="0.25"></a-box>
+        </a-plane >
 
-        <a-box color="black" position="0 0 -0.051" rotation="0 0 0"  depth="0.1" height="1.2" width="2"></a-box>
       </a-entity>
+
       <a-entity id="target1" mindar-image-target="targetIndex: 1">
         <a-video id="videoPlayer2" src="#videoAlta" width="2" height="1.2" position="0 0 0">
-          <a-image id="videoControls2" src="#playButton" class="clickable" position="0 0.8 0" width="0.3" height="0.3" play-pause2></a-image>
+          <a-box color="black" position="0 0 -0.0755" depth="0.15" height="1.2" width="2"></a-box>
         </a-video>
+        <!-- play-pause button -->
+        <a-image id="videoControls2" src="#playButton" class="clickable" position="-0.5 -0.8 0" depth="0.1" width="0.35" height="0.25" play-pause2>
+          <a-box color="black" position="0 0 -0.051" depth="0.1" width="0.35" height="0.25"></a-box>
+        </a-image>
+        <!-- touch button -->
+        <a-plane id="touchBtn2" src="#touch" position="0.5 -0.8 0" class="clickable" width="0.35" height="0.25" display_fullimage2>
+          <a-box color="black" position="0 0 -0.051" depth="0.1" width="0.35" height="0.25"></a-box>
+        </a-plane >
 
-        <a-box color="black" position="0 0 -0.051" rotation="0 0 0"  depth="0.1" height="1.2" width="2"></a-box>
       </a-entity>
     </a-scene>
   </body>
+
+  <style>
+    .full {
+      height: 100%;
+      width: 100%;
+      background: black;
+      position: absolute;
+    }
+  </style>
 </html>
