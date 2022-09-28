@@ -16,6 +16,7 @@
       background: black;
       position: absolute;
       z-index: 100;
+      display: none;
     }
     .myVideo {
       position: fixed;
@@ -34,7 +35,7 @@
     /* background: url('./ExitFullScreenIcon.png') center center no-repeat; */
     height: 57px;
     
-    background-color: white;
+    /* background-color: white; */
     position: absolute;
     bottom: 10%;
     width: 57px;
@@ -47,35 +48,47 @@
      .fullScreen-buttons{
     background: url('./ExitFullScreenIcon.png') center center no-repeat;
     height: 100%;
-    position: absolute;
-    width: 100%;
+    width: 30%;
     object-fit: cover
+
     }
      .player-buttons{
     background: url('./play-button-small.png') center center no-repeat;
     height: 100%;
-    position: absolute;
-    width: 100%;
+    width: 30%;
     object-fit: cover
+    }
+    .button-container{
+    align-self:flex-end;
+    height:7%;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    z-index: 102;
     }
   </style>
   </head>
   <body>
-    <div id="fullImg" class="full" style="display: inline;">
+    <div id="fullImg" class="full">
 
       <video id="videoAlta" class="myVideo"
-        src="./Video-qua-tang-Alta-Group.mp4"
+        src="./Video-qua-tang-Alta-Group-Small.mp4"
         width="160" height="90" webkit-playsinline playsinline loop
         visible
         crossOrigin="anonymous"></video>
-      <div class="player-buttons-container left50P margin1px">
+      <div class="button-container">
+        <button id="divPlayBtn" onclick="handlePlayPauseOnDiv()"
+          class="player-buttons"></button>
+        <button onclick="exitFullScreen()" class="fullScreen-buttons"></button>
+      </div>
+      <!-- <div class="player-buttons-container left50P margin1px">
         <button onclick="exitFullScreen()" src="./ExitFullScreenIcon.png"
           class="fullScreen-buttons"></button>
       </div>
       <div class="player-buttons-container left40P margin1px">
         <button id="divPlayBtn" onclick="handlePlayPauseOnDiv()"
           class="player-buttons"></button>
-      </div>
+      </div> -->
     </div>
     <a-scene mindar-image="imageTargetSrc: ./targetsScale3.mind"
       color-space="sRGB" renderer="colorManagement: true,

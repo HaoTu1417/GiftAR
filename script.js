@@ -69,7 +69,6 @@ AFRAME.registerComponent("display_fullimage2", {
 });
 
 function exitFullScreen() {
-  console.log("exitFullScreen");
   var fullImage = document.getElementById("fullImg");
   fullImage.removeAttribute("style");
   fullImage.setAttribute("style", "display: none;");
@@ -79,41 +78,30 @@ function exitFullScreen() {
   }
 }
 function handlePlayButtonClicked(videoControl) {
-  //var myVid = document.querySelector("#videoAlta");
   if (myVid.paused) {
     myVid.play();
-    // videoControl.setAttribute("src", "#pauseButton");
   } else {
     myVid.pause();
-    // videoControl.setAttribute("src", "#playButton");
   }
   change3DButtonSrc(videoControl);
   change2DButtonSrc();
 }
 
 function handlePlayPauseOnDiv() {
-  // var myVid = document.querySelector("#videoAlta");
   var divPlayBtn = document.getElementById("divPlayBtn");
-  console.log("divPlayBtn", divPlayBtn);
   if (myVid.paused) {
     myVid.play();
     divPlayBtn.style.backgroundImage = "url(./pause-icon-small.png)";
-
-    //videoControl.setAttribute("src", "#pauseButton");
   } else {
     myVid.pause();
     divPlayBtn.style.backgroundImage = "url(./play-button-small.png)";
-    //videoControl.setAttribute("src", "#playButton");
   }
-  console.log("divPlayBtn", divPlayBtn);
 }
 
 function handleFullScreen() {
   var fullImage = document.getElementById("fullImg");
   fullImage.removeAttribute("style");
-  fullImage.setAttribute("style", "display: inline;");
-  console.log("fullImage", fullImage);
-  console.log("touch");
+  fullImage.setAttribute("style", "display: flex;");
   isFullScreen = true;
 }
 
@@ -133,7 +121,6 @@ function handleTargetFound(videoControl) {
   change2DButtonSrc();
 }
 function change3DButtonSrc(videoControl) {
-  // var myVid = document.querySelector("#videoAlta");
   if (myVid.paused) {
     videoControl.setAttribute("src", "#playButton");
   } else {
