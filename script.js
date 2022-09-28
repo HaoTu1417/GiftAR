@@ -1,7 +1,12 @@
+let myVid;
+let divPlayBtn;
+let isTargetFound;
+let isFullScreen;
 document.addEventListener("DOMContentLoaded", function () {
   const target_0 = document.querySelector("#target0");
   const target_1 = document.querySelector("#target1");
-
+  myVid = document.querySelector("#videoAlta");
+  divPlayBtn = document.getElementById("divPlayBtn");
   const videoControls = document.getElementById("videoControls");
   const videoControls2 = document.getElementById("videoControls2");
 
@@ -9,20 +14,24 @@ document.addEventListener("DOMContentLoaded", function () {
   target_0.addEventListener("targetFound", (event) => {
     console.log("target found");
     handleTargetFound(videoControls);
+    isTargetFound = true;
   });
   target_1.addEventListener("targetFound", (event) => {
     console.log("target found");
     handleTargetFound(videoControls2);
+    isTargetFound = true;
   });
 
   // detect target lost
   target_0.addEventListener("targetLost", (event) => {
     console.log("target lost");
     handleTargetLost(videoControls);
+    isTargetFound = false;
   });
   target_1.addEventListener("targetLost", (event) => {
     console.log("target lost");
     handleTargetLost(videoControls2);
+    isTargetFound = false;
   });
 });
 
@@ -64,20 +73,26 @@ function exitFullScreen() {
   var fullImage = document.getElementById("fullImg");
   fullImage.removeAttribute("style");
   fullImage.setAttribute("style", "display: none;");
+  isFullScreen = false;
+  if (!isTargetFound) {
+    myVid.pause();
+  }
 }
 function handlePlayButtonClicked(videoControl) {
-  var myVid = document.querySelector("#videoAlta");
+  //var myVid = document.querySelector("#videoAlta");
   if (myVid.paused) {
     myVid.play();
-    videoControl.setAttribute("src", "#pauseButton");
+    // videoControl.setAttribute("src", "#pauseButton");
   } else {
     myVid.pause();
-    videoControl.setAttribute("src", "#playButton");
+    // videoControl.setAttribute("src", "#playButton");
   }
+  change3DButtonSrc(videoControl);
+  change2DButtonSrc();
 }
 
 function handlePlayPauseOnDiv() {
-  var myVid = document.querySelector("#videoAlta");
+  // var myVid = document.querySelector("#videoAlta");
   var divPlayBtn = document.getElementById("divPlayBtn");
   console.log("divPlayBtn", divPlayBtn);
   if (myVid.paused) {
@@ -99,29 +114,36 @@ function handleFullScreen() {
   fullImage.setAttribute("style", "display: inline;");
   console.log("fullImage", fullImage);
   console.log("touch");
+  isFullScreen = true;
 }
 
-function handleTargetLost(videoControls) {
-  var myVid = document.querySelector("#videoAlta");
-  myVid.pause();
-  if (myVid.paused) {
-    videoControls.setAttribute("src", "#playButton");
-  } else {
-    videoControls.setAttribute("src", "#pauseButton");
+function handleTargetLost(videoControl) {
+  if (!isFullScreen) {
+    myVid.pause();
   }
+  change3DButtonSrc(videoControl);
+  change2DButtonSrc();
 }
 
 function handleTargetFound(videoControl) {
-  var myVid = document.querySelector("#videoAlta");
-  var divPlayBtn = document.getElementById("divPlayBtn");
-  myVid.play();
-
+  if (!isFullScreen) {
+    myVid.play();
+  }
+  change3DButtonSrc(videoControl);
+  change2DButtonSrc();
+}
+function change3DButtonSrc(videoControl) {
+  // var myVid = document.querySelector("#videoAlta");
   if (myVid.paused) {
     videoControl.setAttribute("src", "#playButton");
-    divPlayBtn.style.backgroundImage = "url(./play-button-small.png)";
   } else {
     videoControl.setAttribute("src", "#pauseButton");
-
+  }
+}
+function change2DButtonSrc() {
+  if (myVid.paused) {
+    divPlayBtn.style.backgroundImage = "url(./play-button-small.png)";
+  } else {
     divPlayBtn.style.backgroundImage = "url(./pause-icon-small.png)";
   }
 }
