@@ -1,0 +1,88 @@
+.full {
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+
+  position: fixed;
+  z-index: 100;
+}
+.displayFlex {
+  display: flex;
+}
+.flexEnd {
+  align-items: flex-end;
+}
+.justifyCenter {
+  justify-content: center;
+}
+.fullWidth {
+  width: 100%;
+}
+.height15P {
+  height: 13%;
+}
+.blackBG {
+  background: black;
+}
+.myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+.left40P {
+  left: 10%;
+}
+.left50P {
+  left: 50%;
+}
+.player-buttons-container {
+  /* background: url('./ExitFullScreenIcon.png') center center no-repeat; */
+  height: 57px;
+
+  /* background-color: white; */
+  position: absolute;
+  bottom: 10%;
+  width: 57px;
+  z-index: 1;
+  object-fit: cover;
+}
+.margin1px {
+  margin: 1px;
+}
+.fullScreen-buttons {
+  background: url("./ExitFullScreenIcon.png") center center no-repeat;
+  height: 100%;
+  width: 30%;
+  object-fit: cover;
+}
+.player-buttons {
+  background: url("./play-button-small.png") center center no-repeat;
+  height: 100%;
+  width: 30%;
+  object-fit: cover;
+}
+.button-container {
+  align-self: flex-end;
+  height: 7%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 102;
+}
+.transparentBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.mB1P {
+  margin-bottom: 3%;
+}
+.button {
+  height: 65px;
+  width: 65px;
+  margin-bottom: 3%;
+}
