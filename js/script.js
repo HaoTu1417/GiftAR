@@ -126,6 +126,7 @@ function handleTargetFound(videoControl) {
   }
 
   myVid.play();
+  unMuteVideo();
   change3DButtonSrc(videoControl);
   change2DButtonSrc();
 }
