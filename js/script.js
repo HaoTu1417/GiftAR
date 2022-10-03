@@ -112,6 +112,15 @@ function handleFullScreen() {
   }
   unMuteVideo();
 }
+function handleTargetFound(videoControl) {
+  if (!isFullScreen) {
+  }
+
+  myVid.play();
+  // unMuteVideo();
+  change3DButtonSrc(videoControl);
+  change2DButtonSrc();
+}
 
 function handleTargetLost(videoControl) {
   if (!isFullScreen) {
@@ -121,15 +130,6 @@ function handleTargetLost(videoControl) {
   change2DButtonSrc();
 }
 
-function handleTargetFound(videoControl) {
-  if (!isFullScreen) {
-  }
-
-  myVid.play();
-  unMuteVideo();
-  change3DButtonSrc(videoControl);
-  change2DButtonSrc();
-}
 function change3DButtonSrc(videoControl) {
   if (myVid == null || videoControl == null) {
     return;
@@ -152,4 +152,5 @@ function unMuteVideo() {
   myVid.removeAttribute("muted");
   myVid.muted = false;
   muteBtn.style.display = "none";
+  myVid.play();
 }
